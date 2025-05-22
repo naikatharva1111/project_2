@@ -1,0 +1,393 @@
+:root {
+    --primary: #4a6bff;
+    --secondary: #ff6b6b;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --success: #28a745;
+    --warning: #ffc107;
+    --background: #f5f7ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--dark);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo h1 {
+    color: var(--primary);
+    font-size: 24px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+}
+
+.sidebar {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.sidebar-menu {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.sidebar-menu li {
+    margin-bottom: 15px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--dark);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background-color: rgba(74, 107, 255, 0.1);
+    color: var(--primary);
+}
+
+.content-section {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(74, 107, 255, 0.05);
+}
+
+.stat-card h3 {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.stat-card .amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.recent-expenses {
+    margin-top: 20px;
+}
+
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.expense-item:last-child {
+    border-bottom: none;
+}
+
+.expense-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(74, 107, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    transform: translateY(-20px);
+    transition: all 0.3s;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.auth-tab.active {
+    border-bottom: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-outline {
+    background: none;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+.category-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.category-option {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.category-option.selected {
+    border-color: var(--primary);
+    background: rgba(74, 107, 255, 0.05);
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Floating Action Button for Add Expense */
+.add-expense {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.add-expense:hover {
+    background-color: #3a5edf; /* Slightly darker shade of primary */
+    transform: scale(1.05);
+}
+
+.add-expense i {
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Animate icon on hover */
+/*
+.add-expense:hover i {
+    transform: rotate(90deg);
+}
+*/
+
+/* Styles for event dots on Flatpickr calendar */
+.flatpickr-day .event-dot {
+    width: 5px;
+    height: 5px;
+    background-color: var(--secondary); /* Use secondary color for event dots */
+    border-radius: 50%;
+    display: block;
+    margin: 2px auto 0;
+}
+
+/* Styling for the div that will show expenses for a selected calendar day */
+#calendarExpenseDisplay {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: var(--light);
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+#calendarExpenseDisplay ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#calendarExpenseDisplay li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #ccc;
+}
+#calendarExpenseDisplay li:last-child {
+    border-bottom: none;
+}
+/* Chart Container Styles for Analytics */
+.chart-row {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens if needed */
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    flex: 1 1 300px; /* Flex grow, shrink, and basis. Adjust basis as needed. */
+    min-width: 280px; /* Minimum width before wrapping or shrinking too much */
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: relative; /* Important for Chart.js responsiveness */
+    height: 300px; /* Define a fixed height */
+}
+
+.analytics-section .chart-container h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Adjustments for the single chart that's not in a .chart-row */
+.analytics-section > .chart-container {
+    margin-bottom: 20px; /* Add margin if it's the last element */
+}
+
+/* Responsive adjustments for chart containers if needed */
+@media (max-width: 768px) {
+    .chart-row {
+        flex-direction: column; /* Stack charts vertically on smaller screens */
+    }
+    .chart-container {
+        flex-basis: auto; /* Allow full width when stacked */
+        height: 250px; /* Optionally adjust height for smaller screens */
+    }
+}

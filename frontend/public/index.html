@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>BudgetPal - Visual Expense Tracker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-wallet"></i></span>
+                <h1>BudgetPal</h1>
+            </div>
+            <div class="user-profile">
+                <div class="user-avatar">AS</div>
+                <span>Aarav Sharma</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="user-info">
+                    <div class="user-avatar large">AS</div>
+                    <h3>Aarav Sharma</h3>
+                    <p>Student</p>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#analytics"><i class="fas fa-chart-pie"></i> Analytics</a></li>
+                    <li><a href="#calendar"><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                    <li><a href="#family"><i class="fas fa-users"></i> Family</a></li>
+                    <li><a href="#alerts"><i class="fas fa-bell"></i> Alerts</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </div>
+
+            <div class="page-content-wrapper">
+                <div class="dashboard-section content-section">
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <h3>Monthly Budget</h3>
+                            <div class="amount">₹15,000</div>
+                            <div class="change positive">
+                                <i class="fas fa-arrow-up"></i> 10% from last month
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Spent</h3>
+                            <div class="amount">₹8,750</div>
+                            <div class="change negative">
+                                <i class="fas fa-arrow-down"></i> 5% from last month
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Remaining</h3>
+                            <div class="amount">₹6,250</div>
+                            <div class="change positive">
+                                <i class="fas fa-arrow-up"></i> 15% from last month
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="budget-progress">
+                        <div class="progress-header">
+                            <h2>Monthly Budget Progress</h2>
+                            <span>58% spent</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 58%"></div>
+                        </div>
+                        <div class="progress-details">
+                            <span>₹8,750 spent</span>
+                            <span>₹6,250 remaining</span>
+                        </div>
+                    </div>
+
+                    <div class="recent-expenses">
+                        <div class="section-header">
+                            <h2>Recent Expenses</h2>
+                            <button class="btn btn-outline">View All</button>
+                        </div>
+                        <ul class="expenses-list">
+                            <li class="expense-item">
+                                <div class="expense-info">
+                                    <div class="expense-icon">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                    <div class="expense-details">
+                                        <h4>Dinner with friends</h4>
+                                        <span class="expense-category">Food & Dining</span>
+                                    </div>
+                                </div>
+                                <div class="expense-amount">-₹1,200</div>
+                            </li>
+                            <li class="expense-item">
+                                <div class="expense-info">
+                                    <div class="expense-icon">
+                                        <i class="fas fa-bus"></i>
+                                    </div>
+                                    <div class="expense-details">
+                                        <h4>Bus fare</h4>
+                                        <span class="expense-category">Transportation</span>
+                                    </div>
+                                </div>
+                                <div class="expense-amount">-₹50</div>
+                            </li>
+                            <li class="expense-item">
+                                <div class="expense-info">
+                                    <div class="expense-icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <div class="expense-details">
+                                        <h4>Textbook purchase</h4>
+                                        <span class="expense-category">Education</span>
+                                    </div>
+                                </div>
+                                <div class="expense-amount">-₹750</div>
+                            </li>
+                            <li class="expense-item">
+                                <div class="expense-info">
+                                    <div class="expense-icon">
+                                        <i class="fas fa-coffee"></i>
+                                    </div>
+                                    <div class="expense-details">
+                                        <h4>Coffee</h4>
+                                        <span class="expense-category">Food & Dining</span>
+                                    </div>
+                                </div>
+                                <div class="expense-amount">-₹120</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="analytics-section content-section hidden">
+                  <div class="section-header">
+                    <h2>Spending Analytics</h2>
+                    <div class="time-filter">
+                      <select id="timeRange" class="form-control">
+                        <option value="7">Last 7 Days</option>
+                        <option value="30">Last 30 Days</option>
+                        <option value="90">Last 90 Days</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="chart-row">
+                    <div class="chart-container">
+                      <h3>Spending Trends</h3>
+                      <canvas id="spendingChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                      <h3>Category Breakdown</h3>
+                      <canvas id="categoryChart"></canvas>
+                    </div>
+                  </div>
+
+                  <div class="chart-container">
+                    <h3>Monthly Comparison</h3>
+                    <canvas id="monthlyComparisonChart"></canvas>
+                  </div>
+                </div>
+
+                <div class="calendar-section content-section hidden">
+                    <div class="section-header"><h2>Calendar</h2></div>
+                    <div id="calendar">
+                        <!-- Calendar will be initialized here if using Flatpickr or other library -->
+                        <p>Calendar view will be displayed here.</p>
+                    </div>
+                    <div id="calendarExpenseDisplay" class="mt-3">
+                        <!-- Expenses for selected date will be shown here -->
+                    </div>
+                </div>
+
+                <div class="family-section content-section hidden">
+                    <div class="section-header"><h2>Family Sharing</h2></div>
+                    <p>Family sharing features will be displayed here.</p>
+                </div>
+
+                <div class="alerts-section content-section hidden">
+                    <div class="section-header"><h2>Alerts & Notifications</h2></div>
+                    <p>Alerts and notifications settings and history will be displayed here.</p>
+                </div>
+
+                <div class="settings-section content-section hidden">
+                    <div class="section-header"><h2>Settings</h2></div>
+                    <p>Application settings will be displayed here.</p>
+                    <!-- Actual settings form will be different from previous version -->
+                    <!-- For example, monthly budget might be part of a user profile modal now -->
+                </div>
+            </div> <!-- End page-content-wrapper -->
+        </div> <!-- End main-content -->
+
+        <button class="add-expense" id="addExpenseBtnFAB">
+            <i class="fas fa-plus"></i>
+        </button>
+
+        <div class="modal" id="expenseModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add New Expense</h2>
+                    <button class="close-modal" id="closeExpenseModalBtn">&times;</button>
+                </div>
+                <form id="expenseForm">
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount (₹)</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                            <input type="number" id="expenseAmount" class="form-control" placeholder="0" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDescription">Description</label>
+                        <input type="text" id="expenseDescription" class="form-control" placeholder="What was this expense for?" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <div class="category-selector">
+                            <div class="category-option selected" data-category="food">
+                                <i class="fas fa-utensils"></i>
+                                <span>Food</span>
+                            </div>
+                            <div class="category-option" data-category="transport">
+                                <i class="fas fa-bus"></i>
+                                <span>Transport</span>
+                            </div>
+                            <div class="category-option" data-category="rent">
+                                <i class="fas fa-home"></i>
+                                <span>Rent</span>
+                            </div>
+                            <div class="category-option" data-category="shopping">
+                                <i class="fas fa-shopping-bag"></i>
+                                <span>Shopping</span>
+                            </div>
+                            <div class="category-option" data-category="education">
+                                <i class="fas fa-book"></i>
+                                <span>Education</span>
+                            </div>
+                            <div class="category-option" data-category="entertainment">
+                                <i class="fas fa-gamepad"></i>
+                                <span>Entertainment</span>
+                            </div>
+                            <div class="category-option" data-category="health">
+                                <i class="fas fa-heartbeat"></i>
+                                <span>Health</span>
+                            </div>
+                            <div class="category-option" data-category="other">
+                                <i class="fas fa-ellipsis-h"></i>
+                                <span>Other</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate" class="form-control">
+                    </div>
+                    <button class="voice-input-btn">
+                        <i class="fas fa-microphone"></i>
+                        Voice Entry
+                    </button>
+                    <div class="family-sharing">
+                        <label>Share with family members</label>
+                        <div class="family-members">
+                            <div class="family-member">PS</div>
+                            <div class="family-member">MS</div>
+                            <div class="family-member">RS</div>
+                            <div class="family-member add-member">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" id="cancelExpenseModalBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="addExpenseSubmitBtn">Add Expense</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="userModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle">Create Your Profile</h2>
+      <button class="close-modal" id="closeUserModalBtn">&times;</button>
+    </div>
+    <form id="userForm">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="userName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="userEmail" class="form-control" readonly> <!-- Email might be readonly if logged in via Firebase -->
+      </div>
+      <div class="form-group">
+        <label>Profile Type</label>
+        <select id="userType" class="form-control">
+          <option value="student">Student</option>
+          <option value="family">Family</option>
+          <!-- Add other types as needed -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Currency</label>
+        <select id="userCurrency" class="form-control">
+          <option>₹</option>
+          <option>$</option>
+          <option>€</option>
+          <option>£</option>
+        </select>
+      </div>
+       <div class="form-group"> <!-- Added for Monthly Budget -->
+        <label for="monthlyBudgetSetting">Monthly Budget</label>
+        <input type="number" id="monthlyBudgetSetting" class="form-control" placeholder="e.g., 20000">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="logoutFromUserModalBtn">Logout</button>
+        <button type="submit" class="btn btn-primary" id="saveProfileBtn">Save Profile</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal" id="authModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="authModalTitle">Login</h2> <!-- Changed ID -->
+      <button class="close-modal" id="closeAuthModalBtn">&times;</button>
+    </div>
+    <div class="auth-options">
+      <button class="btn" id="showLoginBtn">Login</button> <!-- Changed ID -->
+      <button class="btn" id="showSignupBtn">Sign Up</button> <!-- Changed ID -->
+    </div>
+
+    <form id="loginForm" class="auth-form"> <!-- Kept ID -->
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <form id="signupForm" class="auth-form hidden"> <!-- Kept ID -->
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="signupName" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="signupEmail" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="signupPassword" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Account</button>
+    </form>
+  </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
